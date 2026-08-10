@@ -48,6 +48,19 @@ dependencies:
     git:
       url: https://github.com/mbc-travis/mpflutter_wechat_api.git
       ref: flutter-3.38
+  # 微信组件包（若项目用到，均为私有仓库）
+  mpflutter_wechat_button:
+    git:
+      url: https://github.com/mbc-travis/mpflutter_wechat_button.git
+      ref: flutter-3.38
+  mpflutter_wechat_webview:
+    git:
+      url: https://github.com/mbc-travis/mpflutter_wechat_webview.git
+      ref: flutter-3.38
+  mpflutter_wechat_editable:
+    git:
+      url: https://github.com/mbc-travis/mpflutter_wechat_editable.git
+      ref: flutter-3.38
 ```
 
 > 如果项目与 fork 在同一台机器/同一 monorepo，也可以用 `path:` 依赖：
@@ -99,19 +112,18 @@ dependencies:
     git: { url: https://github.com/mbc-travis/mpflutter_build_tools.git, ref: flutter-3.38 }
   mpflutter_wechat_api:
     git: { url: https://github.com/mbc-travis/mpflutter_wechat_api.git, ref: flutter-3.38 }
-  # 以下三个组件包继续用 hosted 版即可（约束 >=2.0.0 能被 fork 的 2.8.1 满足）
-  mpflutter_wechat_button: 0.1.0
-  mpflutter_wechat_webview: 0.1.0
-  mpflutter_wechat_editable: 0.1.2
-
-dependency_overrides:
-  mpflutter_core:
-    git: { url: https://github.com/mbc-travis/mpflutter.git, ref: flutter-3.38 }
+  mpflutter_wechat_button:
+    git: { url: https://github.com/mbc-travis/mpflutter_wechat_button.git, ref: flutter-3.38 }
+  mpflutter_wechat_webview:
+    git: { url: https://github.com/mbc-travis/mpflutter_wechat_webview.git, ref: flutter-3.38 }
+  mpflutter_wechat_editable:
+    git: { url: https://github.com/mbc-travis/mpflutter_wechat_editable.git, ref: flutter-3.38 }
 ```
 
-说明：`mpflutter_wechat_api` fork 版本身不依赖 `mpflutter_core`；组件包
-（button/webview/editable）依赖 `mpflutter_core >=2.0.0` 与 `mpflutter_wechat_api
->=2.0.0`，hosted 版即可，冲突统一由 `dependency_overrides` 解决。
+说明：五个生态包的 fork 版内部依赖已改指向 fork 的 git 源（同 url + ref 即同源），
+全部用 git fork 时不再产生源冲突；`dependency_overrides` 仅在项目里还有其它
+依赖 hosted 版 MPFlutter 包的第三方时才需要（把 `mpflutter_core`、
+`mpflutter_wechat_api` 覆盖为 git 源即可）。
 
 ## 2. 应用入口
 
