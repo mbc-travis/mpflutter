@@ -62,6 +62,28 @@ environment:
 flutter clean && flutter pub get
 ```
 
+### 1.1 传递依赖冲突：其它 MPFlutter 生态包依赖 hosted 版 mpflutter_core
+
+如果项目还依赖 MPFlutter 生态的其它包（如 `mpflutter_wechat_api`、
+`mpflutter_wegame_api` 等），它们声明的是 **pub.dev 托管版** 的 `mpflutter_core`，
+会与你引用的 git fork 版冲突，pub 报：
+
+> Because every version of xxx depends on mpflutter_core from hosted and
+> your app depends on mpflutter_core from git, version solving failed.
+
+在 `pubspec.yaml` 中用 `dependency_overrides` 强制统一来源即可：
+
+```yaml
+dependency_overrides:
+  mpflutter_core:
+    git:
+      url: https://github.com/mbc-travis/mpflutter.git
+      ref: flutter-3.38
+```
+
+覆盖声明优先级最高，会忽略传递依赖的来源与版本约束。fork 版本号保持 2.8.1，
+这些生态包是纯 Dart 包，不受桥接层改动影响，可直接兼容。
+
 ## 2. 应用入口
 
 - **已使用官方 MPFlutter 2.0 的项目**：入口无需改动，保持
