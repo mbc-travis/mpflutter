@@ -61,6 +61,11 @@ dependencies:
     git:
       url: https://github.com/mbc-travis/mpflutter_wechat_editable.git
       ref: flutter-3.38
+  # 内部业务包（若项目用到，私有仓库，原内部 GitLab flutter-pub monorepo）
+  mpflutter_rsa_sign:
+    git:
+      url: https://github.com/mbc-travis/mpflutter_rsa_sign.git
+      ref: flutter-3.38
 ```
 
 > 如果项目与 fork 在同一台机器/同一 monorepo，也可以用 `path:` 依赖：
