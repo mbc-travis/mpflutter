@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.8.1 (fork: flutter-3.38)
+
+feat:
+- 适配 Flutter 3.38.x，已在 Flutter 3.38.10 下完成小程序构建验证。
+- 放宽 `web` 依赖约束至 `<2.0.0`，避免与新版 Flutter SDK 内置包冲突。
+
 ## 2.7.6
 
 fix:
